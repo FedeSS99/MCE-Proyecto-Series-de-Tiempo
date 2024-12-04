@@ -24,9 +24,9 @@ par(mfrow = c(2, 1))
 acf(SIAP_comp[, 2])
 pacf(SIAP_comp[, 2])
 
-# Transformacion logaritmica base 10 y diferenciacion con lag = 4
-tranGA1 <- diff(GA1_comp[,2], lag = 12)
-tranSIAP <- diff(SIAP_comp[,2], lag = 12)
+# Transformacion logaritmica base 10 y Diferenciacion con lag = 12 (Posible overfitting)
+tranGA1 <- diff(log10(GA1_comp[,2]), lag = 12)
+tranSIAP <- diff(log10(SIAP_comp[,2]), lag = 12)
 
 # Visualizamos las series bajo la transformacion y diferenciacion
 autoplot(tranGA1, ts.colour = "blue") + ggtitle("GA1")
@@ -63,10 +63,7 @@ summary(sarima_model)
 # Revisamos los residuales del modelo SARIMA ajustado
 checkresiduals(sarima_model)
 
-# Predecimos el último valor de GA1 en fecha dic2023
-SIAP_presente <- ts()
-
-GA1_presente_SARIMA <- forecast(sarima_model, xreg = SIAP_presente, h = 1)
+GA1_presente_SARIMA <- forecast(sarima_model, xreg = Xpresente, h = 1)
 GA1_presente_SARIMA
 par(mfrow = c(1,1))
 plot(GA1_presente_SARIMA)
