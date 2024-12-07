@@ -25,12 +25,12 @@ acf(IVF)
 pacf(IVF)
 
 # Tests aumentados de Dickey-Fuller en ambas series
-adf_testGA1comp <- adf.test(GA1, alternative = "stationary")
-adf_testGA1comp
+adf_testGA1 <- adf.test(GA1, alternative = "stationary")
+adf_testGA1
 # p-valor = menor a 0.01 -> Evidencia de estacionariedad
 
-adf_testSIAPcomp <- adf.test(IVF, alternative = "stationary")
-adf_testSIAPcomp
+adf_testIVF <- adf.test(IVF, alternative = "stationary")
+adf_testIVF
 # p-valor = 0.0153 -> Evidencia de estacionariedad
 
 # Variables predictoras y objetivo
