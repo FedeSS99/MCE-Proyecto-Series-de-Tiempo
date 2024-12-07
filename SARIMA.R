@@ -8,8 +8,8 @@ datosGA1 <- read.csv("./data/GA1.csv")
 datosSIAP <- read.csv("./data/IVF_SIAP.csv")
 
 # intervalo de tiempo que comparten ene2015-dic2023
-GA1 <- ts(datosGA1[265:372, 2], start = 2015, frequency = 12)
-IVF <- ts(datosSIAP[1:108, 2], start = 2015, frequency = 12)
+GA1 <- ts(datosGA1[265:372, 2], start = c(2015, 1), frequency = 12)
+IVF <- ts(datosSIAP[1:108, 2], start = c(2015, 1), frequency = 12)
 
 # Visualizacion de GA1 y SIAP entre ene2015-dic2023
 autoplot(GA1, ts.colour = "blue") + ggtitle("GA1")
