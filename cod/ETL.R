@@ -75,8 +75,9 @@ TEMP <- ts(dat_tem, start = c(2015, 1), frequency=12)
 DIES <- ts(dat_die, start = c(2017, 1, 1), frequency = 12)
 
 # Se homologa la temporalidad
-DIES <- ta(DIES, to = 12, conversion = "average")
-aux <- ts(rep(NA, 23), frequency = 12, start = c(2015, 1))
+aux <- ts(rep(NA, 24), frequency = 12, start = c(2015, 1))
 DIES <- ts( c(aux, DIES), start = c(2015, 1),  frequency = 12 )
+aux <- ts(rep(NA, 2), frequency = 12, start = c(2023, 11))
+DIES <- ts( c(DIES, aux), start = c(2015, 1),  frequency = 12 )
 DIES <- na_locf(DIES)
 
