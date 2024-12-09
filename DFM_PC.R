@@ -70,8 +70,11 @@ dev.off()
 # -- Evaluamos los supuestos --
 LM_Y_factors <- lm(as.matrix(GA1) ~ PC_Estim$Fhat)
 Residuales_Factores <- resid(LM_Y_factors)
+png("./images/Resultados/ResidualesFactorGA1.png")
+plot(Residuales_Factores, type = "b", lwd = 2, pch = 19, xlab = "Indice de Tiempo", ylab = "Magnitud de residual", main = "Residuales de F1 respecto a GA1")
+dev.off()
 
-adf.test(Residuales_Factores)
+adf.test(Residuales_Factores, k = 0)
 # Contamos con un p-valor < 0.05 por lo que los residuales son estacionarios
 
 nowcasts <- numeric(h)
