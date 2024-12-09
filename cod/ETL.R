@@ -42,11 +42,11 @@ dat_tem <- data.frame()
 for (r in 2015:2023){
   
   if (r<2020){
-    aux_1 <- data.frame(t(read_excel(paste("D:/Postgrado/Tercer_Semestre/Series_Tiempo/Proyecto/data/Precipitacion/", r, "Precip.xls", sep = ""), skip = 1, sheet = 1)[33,]))[2:13,1]  
+    aux_1 <- data.frame(t(read_excel(paste("./data/Precipitacion/", r, "Precip.xls", sep = ""), skip = 1, sheet = 1)[33,]))[2:13,1]  
   }else{
-    aux_1 <- data.frame(t(read_excel(paste("D:/Postgrado/Tercer_Semestre/Series_Tiempo/Proyecto/data/Precipitacion/", r, "Precip.xlsx", sep = ""), skip = 1, sheet = 1)[33,]))[2:13,1]
+    aux_1 <- data.frame(t(read_excel(paste("./data/Precipitacion/", r, "Precip.xlsx", sep = ""), skip = 1, sheet = 1)[33,]))[2:13,1]
   }
-  aux_2 <- data.frame(t(read_excel(paste("D:/Postgrado/Tercer_Semestre/Series_Tiempo/Proyecto/data/Temperatura_Promedio_Excel/", r, "Tmed.xlsx", sep = ""), skip = 1, sheet = 1)[33,]))[2:13,1]
+  aux_2 <- data.frame(t(read_excel(paste("./data/Temperatura_Promedio_Excel/", r, "Tmed.xlsx", sep = ""), skip = 1, sheet = 1)[33,]))[2:13,1]
   
   aux_1 <- data.frame(aux_1)
   aux_2 <- data.frame(aux_2)
@@ -66,12 +66,12 @@ for (r in 2015:2023){
 dat_die <- t(data.frame(read_excel("./data/Precios_promedio_diarios_y_mensuales_en_estaciones_de_servicio.xlsx", sheet = 5, skip = 4))[1, 14:95])
 
 # intervalo de tiempo que comparten ene2015-dic2023
-GA1 <- ts(datosGA1[265:372, 2], start = 2015, frequency = 12)
-IVF <- ts(datosIVF[1:108, 2], start = 2015, frequency = 12)
-IDF1 <- ts(dat_idf1, start = c(2015, 1), frequency=12)
-IDF2 <- ts(dat_idf2, start = c(2015, 1), frequency=12)
-PREC <- ts(dat_pre, start = c(2015, 1), frequency=12)
-TEMP <- ts(dat_tem, start = c(2015, 1), frequency=12)
+GA1 <- ts(datosGA1[265:372, 2], start = c(2015, 1), frequency = 12)
+IVF <- ts(datosIVF[1:108, 2], start = c(2015, 1), frequency = 12)
+IDF1 <- ts(dat_idf1, start = c(2015, 1), frequency = 12)
+IDF2 <- ts(dat_idf2, start = c(2015, 1), frequency = 12)
+PREC <- ts(dat_pre, start = c(2015, 1), frequency = 12)
+TEMP <- ts(dat_tem, start = c(2015, 1), frequency = 12)
 DIES <- ts(dat_die, start = c(2017, 1, 1), frequency = 12)
 
 # Se homologa la temporalidad

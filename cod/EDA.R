@@ -2,6 +2,9 @@
 # EDA #
 #######
 
+source("./cod/Config.R")
+source("./cod/ETL.R")
+
 # Visualizacion ene2015-dic2023
 png("./images/EDA/Serie_GA1.png")
 par(mfrow = c(1,1))
