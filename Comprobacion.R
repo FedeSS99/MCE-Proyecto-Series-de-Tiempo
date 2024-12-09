@@ -4,9 +4,9 @@ ResSARIMA <- read.csv("./data/nowSARIMA.csv")
 ResDFM <- read.csv("./data/nowDFM.csv")
 
 # -- Calculo del MAE y MSE para los modelos SARIMA y DMF --
-Errores_SARIMA <- calcular_MAE_MSE(ResSARIMA$nowSARIMA, ResSARIMA$Obs)
+Errores_SARIMA <- calcular_MAE_RMSE(ResSARIMA$nowSARIMA, ResSARIMA$Obs)
 rownames(Errores_SARIMA) <- c("SARIMA")
-Errores_DFM <- calcular_MAE_MSE(ResDFM$nowDFM, ResDFM$Obs)
+Errores_DFM <- calcular_MAE_RMSE(ResDFM$nowDFM, ResDFM$Obs)
 rownames(Errores_DFM) <- c("DFM")
 Errores <- rbind(Errores_SARIMA, Errores_DFM)
 Errores
