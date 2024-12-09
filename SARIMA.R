@@ -21,6 +21,7 @@ for(hi  in 1:h){
     # Realizamos nowcasting con SARIMA
     GA1_presente_SARIMA <- forecast(sarima_model, h = 1)
     nowcasts[hi] <- GA1_presente_SARIMA$mean
+    print(hi)
 }
 
 # Calculamos accuracy de los valores predichos por sarima 
