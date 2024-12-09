@@ -63,7 +63,8 @@ num_factors <- 1
 PC_Estim <- pc(X, r = num_factors, demean = 2)
 PC_Estim$Phat
 png("./images/Resultados/FactoresPC_DFM.png")
-ts.plot(PC_Estim$Fhat, col = 1:num_factors, xlab = "Tiempo", ylab = "F1", main = "Factor de variables regresoras")
+ts.plot(scale(cbind(GA1, PC_Estim$Fhat)), col = 1:( 1+ num_factors), lwd = 2, xlab = "Tiempo", ylab = "F1", main = "GA1 y Factor de variables regresoras")
+legend(x = "topleft", legend = c("GA1", "F1"), col = 1:(1+ num_factors), lwd = 2)
 dev.off()
 
 # -- Evaluamos los supuestos --
@@ -75,12 +76,13 @@ adf.test(Residuales_Factores)
 
 nowcasts <- numeric(h)
 for(hi in 1:h){
-    DFM_PC_model <- auto.arima(GA1[1:(N + hi - h - 1)], xreg = PC_Estim$Fhat[1:(N + hi - h - 1), , drop = FALSE])
+    PC_Estim_hi <- pc(X[1:(N + hi - h), ], r = num_factors, demean = 2)
+    DFM_PC_model <- auto.arima(GA1[1:(N + hi - h - 1)], xreg = PC_Estim_hi$Fhat[1:(N + hi - h - 1), , drop = FALSE])
     DFM_PC_model
-    #checkresiduals(DFM_PC_model)
 
-    GA1_presente_DFM_PC <- forecast(DFM_PC_model, xreg = PC_Estim$Fhat[(N + hi - h):N, , drop = FALSE], h = 1)
+    GA1_presente_DFM_PC <- forecast(DFM_PC_model, xreg = PC_Estim_hi$Fhat[N + hi - h, , drop = FALSE], h = 1)
     nowcasts[hi] <- GA1_presente_DFM_PC$mean
+    print(hi)
 }
 
 # Calculamos accuracy de los valores predichos por DFM sobre los valores reales
