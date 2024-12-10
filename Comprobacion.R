@@ -23,4 +23,6 @@ ylab = "Error")
 legend(x = "bottomright", legend = c("SARIMA", "DFM"), col = 1:2, lwd = 2)
 dev.off()
 
-forecast::dm.test(errorDFM, errorSARIMA, alternative = "greater")
+forecast::dm.test(errorDFM, errorSARIMA, alternative = "two.sided")
+# p-valor = 0.0221 < 0.05 por lo que hay evidencia de que la eficiencia predictiva no es igual entre
+# el modelo SARIMA y el modelo DFM
