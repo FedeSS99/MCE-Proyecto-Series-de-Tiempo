@@ -101,3 +101,9 @@ abline(0, 1, col = "red")
 dev.off()
 
 write.csv(data.frame(nowDFM = as.vector(nowcasts), Obs = Y24), file = "./data/nowDFM.csv", row.names = FALSE)
+
+par(mar=c(5, 5, 5, 5), xpd=TRUE)
+plot(GA1)
+lines(ts(GA1[1:(N + 1 - h - 1)], start = c(2015), frequency = 12), col = 'blue')
+lines(ts(nowcasts, frequency = 12, start = c(2022, 1)), col = 'red')
+legend(x = 'topleft', inset=c(0, -0.3), legend = c("Valores reales", "Intervalo de entrenamiento compartido", "Nowcasting"),col = c('black', 'blue', 'red'), lwd = 2)
